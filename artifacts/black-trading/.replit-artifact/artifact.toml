@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "BLACK Trading"
+description = "The BLACK Trading customer website and administrator console for simulated trading evaluations, order management, and campaign analytics."
+version = "1.0.0"
+id = "artifacts/black-trading"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25835
+
+[services.development]
+run = "pnpm --filter @workspace/black-trading run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/black-trading", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/black-trading/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25835"
+BASE_PATH = "/"

@@ -1,0 +1,213 @@
+--------------------------------------------------
+EMAIL DOCUMENT / PDF / DOCX TRAFFIC TRACKING
+--------------------------------------------------
+
+The BLACK Trading website must support traffic tracking from
+marketing documents and email campaigns.
+
+I will send customers a DOCX/PDF promotional document by email.
+
+The document may contain a clickable button such as:
+
+"VISIT NOW"
+"PURCHASE NOW"
+"START YOUR $100K EVALUATION"
+
+When the customer clicks the button, it should open the BLACK Trading website.
+
+The button URL should support campaign tracking.
+
+Example:
+
+https://blacktrading.com/?utm_source=email&utm_medium=docx&utm_campaign=launch
+
+or:
+
+https://blacktrading.com/?utm_source=email&utm_medium=pdf&utm_campaign=100k_launch
+
+--------------------------------------------------
+ANALYTICS
+--------------------------------------------------
+
+Create an analytics system in the admin dashboard.
+
+Show:
+
+TOTAL VISITS
+Unique Visitors
+Returning Visitors
+Total Page Views
+
+CAMPAIGN VISITS
+Email
+PDF
+DOCX
+Social Media
+Direct
+Other
+
+For each campaign show:
+
+Campaign Name
+Visits
+Unique Visitors
+Purchases
+Conversion Rate
+
+Example:
+
+100K Launch Email
+Visitors: 1,245
+Unique Visitors: 982
+Purchases: 37
+Conversion Rate: 3.76%
+
+--------------------------------------------------
+ADMIN DASHBOARD
+--------------------------------------------------
+
+Add an "Analytics" section.
+
+Dashboard cards:
+
+Visitors Today
+Visitors This Week
+Visitors This Month
+Total Visitors
+Unique Visitors
+Purchases
+Conversion Rate
+
+Add charts for:
+
+- Visitors over time
+- Unique visitors over time
+- Purchases over time
+- Visitors by campaign
+- Visitors → Checkout → Purchase funnel
+
+Example funnel:
+
+1,000 Visitors
+↓
+180 Checkout Visits
+↓
+75 Payment Pages
+↓
+24 Payment Submissions
+↓
+18 Verified Purchases
+
+--------------------------------------------------
+CAMPAIGN TRACKING
+--------------------------------------------------
+
+Admin should be able to create tracking links.
+
+Example:
+
+Campaign:
+October Email
+
+Source:
+Email
+
+Medium:
+DOCX
+
+Campaign:
+100K Launch
+
+Generated URL:
+
+https://blacktrading.com/?utm_source=email&utm_medium=docx&utm_campaign=100k_launch
+
+Add a "Copy Link" button.
+
+This URL can then be placed inside the DOCX/PDF button.
+
+--------------------------------------------------
+VISITOR TRACKING
+--------------------------------------------------
+
+Track visitors using privacy-conscious analytics.
+
+Record:
+
+- Timestamp
+- Landing page
+- Campaign/source/medium
+- Device type
+- Browser type
+- Approximate country/region where appropriate
+- Referrer
+- Session identifier
+
+Do NOT collect unnecessary personal information.
+
+Do not store raw passwords, payment credentials, private keys,
+seed phrases, or sensitive financial information.
+
+Respect applicable privacy/cookie laws and provide an appropriate
+privacy notice/cookie controls where required.
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do not count every page refresh as a new customer.
+
+Separate:
+
+VISITS
+UNIQUE VISITORS
+REGISTERED USERS
+CHECKOUTS
+PURCHASES
+
+A visitor is NOT automatically a customer.
+
+A customer should only be counted after an actual successful/
+verified purchase.
+
+Also prevent obvious duplicate/bot traffic from making the
+statistics meaningless where practical.
+
+--------------------------------------------------
+DOCUMENT BUTTON
+--------------------------------------------------
+
+The website does not need to generate the DOCX/PDF itself yet.
+
+Make the campaign URL system compatible with clickable buttons
+inside external DOCX/PDF marketing documents.
+
+The final workflow should be:
+
+BLACK Trading Admin
+↓
+Create campaign
+↓
+Generate tracking URL
+↓
+Copy URL
+↓
+Put URL behind "VISIT NOW" / "PURCHASE NOW" button in DOCX/PDF
+↓
+Send document by email
+↓
+Customer clicks button
+↓
+BLACK Trading landing page
+↓
+Analytics records visit + campaign
+↓
+Customer chooses challenge
+↓
+Checkout
+↓
+Payment
+↓
+Order recorded
+↓
+Admin sees conversion
