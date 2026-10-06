@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A reusable Nova Trading campaign advertisement template with a clickable campaign link.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22 viewBox%3D%220 0 64 64%22%3E%3Crect width%3D%2264%22 height%3D%2264%22 fill%3D%22%23174d36%22%2F%3E%3Ctext x%3D%2232%22 y%3D%2246%22 text-anchor%3D%22middle%22 font-size%3D%2240%22 fill%3D%22white%22%3EN%3C%2Ftext%3E%3C%2Fsvg%3E">
+  <title>Nova Trading — Campaign Ad Template</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17211c;
+      --muted: #66736b;
+      --green: #287953;
+      --green-dark: #174d36;
+      --green-pale: #e7f0e9;
+      --paper: #fff;
+      --line: #dce4dd;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f0f3ef;
+      color: var(--ink);
+      font-family: var(--sans);
+    }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .workspace {
+      width: min(1220px, calc(100% - 40px));
+      margin: 36px auto;
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+    .editor {
+      position: sticky;
+      top: 24px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--paper);
+      box-shadow: 0 14px 42px rgba(28, 48, 36, .07);
+    }
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 10px;
+      color: var(--green);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #68a880;
+      content: "";
+    }
+    .editor h1 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: 29px;
+      font-weight: 500;
+      letter-spacing: -.035em;
+    }
+    .intro {
+      margin: 10px 0 23px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .field {
+      display: grid;
+      gap: 7px;
+      margin: 16px 0;
+    }
+    .field span {
+      color: #36463b;
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .025em;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      min-height: 43px;
+      padding: 11px 12px;
+      border: 1px solid #d4ddd5;
+      border-radius: 8px;
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+    }
+    .field textarea {
+      min-height: 94px;
+      resize: vertical;
+      line-height: 1.55;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: #438563;
+      box-shadow: 0 0 0 3px rgba(52, 126, 86, .12);
+    }
+    .field-help {
+      margin: 0;
+      color: #77837b;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .actions {
+      display: grid;
+      gap: 9px;
+      margin-top: 22px;
+    }
+    .action-button {
+      display: inline-flex;
+      min-height: 45px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 11px 14px;
+      border: 1px solid var(--green);
+      border-radius: 8px;
+      background: var(--green);
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 750;
+      text-decoration: none;
+      transition: background .16s ease, transform .16s ease;
+    }
+    .action-button:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .action-button.secondary {
+      border-color: #cbd8cd;
+      background: #fff;
+      color: var(--green-dark);
+    }
+    .action-button.secondary:hover { background: #f3f7f3; }
+    .status {
+      min-height: 18px;
+      margin: 11px 0 0;
+      color: #9b3d32;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .export-help {
+      margin: 17px 0 0;
+      padding-top: 15px;
+      border-top: 1px solid #e7ece7;
+      color: #6c786f;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+    .stage {
+      min-width: 0;
+      padding: 26px;
+      border: 1px solid #dce4dd;
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 92% 9%, rgba(86, 146, 108, .11), transparent 28%),
+        #e8ede8;
+    }
+    .stage-label {
+      margin: 0 0 16px;
+      color: #738077;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .flyer {
+      position: relative;
+      display: flex;
+      width: min(100%, 700px);
+      min-height: 870px;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      margin: 0 auto;
+      padding: clamp(36px, 6vw, 68px);
+      border: 1px solid #d8e2d9;
+      border-radius: 5px;
+      background:
+        radial-gradient(ellipse at 98% 4%, rgba(89, 146, 111, .11), transparent 34%),
+        linear-gradient(145deg, #fff 0%, #fbfcfa 65%, #f3f7f3 100%);
+      box-shadow: 0 20px 56px rgba(24, 46, 31, .13);
+      isolation: isolate;
+    }
+    .flyer::before, .flyer::after {
+      position: absolute;
+      z-index: -1;
+      border: 1px solid rgba(62, 125, 83, .14);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+    .flyer::before {
+      width: 350px;
+      height: 350px;
+      top: 30%;
+      right: -245px;
+    }
+    .flyer::after {
+      width: 250px;
+      height: 250px;
+      top: 36%;
+      right: -196px;
+    }
+    .flyer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 23px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      width: 39px;
+      height: 39px;
+      place-items: center;
+      border: 1px solid #739681;
+      color: var(--green-dark);
+      font-family: var(--serif);
+      font-size: 22px;
+    }
+    .brand-name {
+      display: grid;
+      gap: 3px;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .17em;
+    }
+    .brand-name small {
+      color: #7d8b81;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .23em;
+    }
+    .top-tag {
+      color: #748178;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+    .flyer-main { padding: 58px 0 38px; }
+    .offer-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 23px;
+      padding: 8px 11px;
+      border: 1px solid #d7e4d9;
+      border-radius: 999px;
+      background: rgba(237, 245, 238, .8);
+      color: var(--green-dark);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+    .offer-chip::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4b9567;
+      content: "";
+    }
+    .headline {
+      max-width: 570px;
+      margin: 0;
+      color: #17231b;
+      font-family: var(--serif);
+      font-size: clamp(54px, 8.7vw, 88px);
+      font-weight: 500;
+      letter-spacing: -.065em;
+      line-height: .97;
+      white-space: pre-line;
+    }
+    .headline em { color: #518366; font-weight: 500; }
+    .description {
+      max-width: 470px;
+      margin: 26px 0 0;
+      color: #65736a;
+      font-size: clamp(14px, 2vw, 17px);
+      line-height: 1.8;
+    }
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 42px;
+    }
+    .value-card {
+      min-height: 91px;
+      padding: 15px 13px;
+      border: 1px solid #e0e8e1;
+      background: rgba(255, 255, 255, .78);
+    }
+    .value-card b {
+      display: block;
+      margin-bottom: 8px;
+      color: #263d2e;
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 500;
+    }
+    .value-card span {
+      color: #728078;
+      font-size: 10px;
+      line-height: 1.45;
+    }
+    .flyer-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .cta {
+      display: inline-flex;
+      min-width: 190px;
+      min-height: 52px;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      padding: 14px 20px;
+      border: 1px solid var(--green);
+      background: var(--green);
+      color: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .015em;
+      text-decoration: none;
+      transition: background .16s ease, transform .16s ease;
+    }
+    .cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .cta:focus-visible { outline: 3px solid #8cb99a; outline-offset: 3px; }
+    .cta-arrow { font-size: 17px; line-height: 1; }
+    .footer-line {
+      display: flex;
+      width: 100%;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 22px;
+    }
+    .footer-note {
+      max-width: 390px;
+      margin: 0;
+      color: #829087;
+      font-size: 9px;
+      line-height: 1.6;
+    }
+    .footer-kicker {
+      flex: none;
+      color: #78907f;
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+    .instructions {
+      max-width: 700px;
+      margin: 16px auto 0;
+      color: #6b776e;
+      font-size: 11px;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .instructions strong { color: #34483a; }
+    @media (max-width: 840px) {
+      .workspace { grid-template-columns: 1fr; width: min(700px, calc(100% - 28px)); margin: 18px auto; gap: 16px; }
+      .editor { position: static; }
+      .stage { padding: 15px; }
+      .flyer { min-height: 760px; padding: 35px 28px; }
+    }
+    @media (max-width: 540px) {
+      .editor { padding: 19px; }
+      .stage { padding: 9px; }
+      .flyer { min-height: 680px; padding: 26px 20px; }
+      .flyer-main { padding: 44px 0 29px; }
+      .value-grid { gap: 6px; margin-top: 30px; }
+      .value-card { min-height: 88px; padding: 11px 8px; }
+      .value-card b { font-size: 14px; }
+      .value-card span { font-size: 9px; }
+      .footer-line { align-items: flex-start; flex-direction: column; gap: 11px; }
+      .footer-kicker { text-align: left; }
+    }
+    @media print {
+      @page { size: A4 portrait; margin: 11mm; }
+      body { background: #fff !important; }
+      .workspace { display: block; width: auto; margin: 0; }
+      .editor, .stage-label, .instructions { display: none !important; }
+      .stage { padding: 0; border: 0; background: #fff; }
+      .flyer {
+        width: 100%;
+        min-height: 267mm;
+        padding: 17mm;
+        border: 1px solid #d8e2d9;
+        border-radius: 0;
+        box-shadow: none;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .headline { font-size: 58pt; }
+      .description { font-size: 12pt; }
+      .cta { color: #fff !important; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="workspace">
+    <section class="editor" aria-labelledby="editor-title">
+      <p class="eyebrow">Campaign creative</p>
+      <h1 id="editor-title">Build your ad</h1>
+      <p class="intro">Customize this reusable Nova Trading flyer, then download the HTML or print a PDF. The CTA stays clickable in the exported ad.</p>
+
+      <label class="field">
+        <span>Headline</span>
+        <textarea id="headline-input" maxlength="100" rows="2">Trade with
+intention.</textarea>
+      </label>
+      <label class="field">
+        <span>Short message</span>
+        <textarea id="description-input" maxlength="280" rows="4">A clear, rules-based simulated evaluation for traders who want to prove consistency before they scale.</textarea>
+      </label>
+      <label class="field">
+        <span>Button label</span>
+        <select id="cta-input">
+          <option value="Visit now">Visit now</option>
+          <option value="Purchase now">Purchase now</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Button destination</span>
+        <input id="url-input" type="url" inputmode="url" autocomplete="url" spellcheck="false" value="https://blacktrading.com/" aria-describedby="url-help">
+        <p class="field-help" id="url-help">Paste the tagged link you created under Admin → Analytics → Campaign links to attribute visits and paid orders.</p>
+      </label>
+
+      <div class="actions">
+        <button class="action-button" id="download-html" type="button">Download standalone HTML</button>
+        <button class="action-button secondary" id="print-pdf" type="button">Print / save as PDF</button>
+        <button class="action-button secondary" id="download-word" type="button">Download Word-ready HTML</button>
+      </div>
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+      <p class="export-help"><strong>For DOCX:</strong> open the Word-ready HTML in Microsoft Word or LibreOffice, then choose Save As → DOCX. The call-to-action remains a hyperlink.</p>
+    </section>
+
+    <section class="stage" aria-label="Advertisement preview">
+      <p class="stage-label">Email attachment preview · A4 portrait</p>
+      <article class="flyer" id="flyer">
+        <header class="flyer-top">
+          <div class="brand" aria-label="Nova Trading">
+            <span class="brand-mark" aria-hidden="true">N</span>
+            <span class="brand-name">NOVA<small>TRADING</small></span>
+          </div>
+          <span class="top-tag">Performance is a process</span>
+        </header>
+
+        <div class="flyer-main">
+          <span class="offer-chip">Simulated trading evaluation</span>
+          <h2 class="headline" id="headline-preview">Trade with
+<em>intention.</em></h2>
+          <p class="description" id="description-preview">A clear, rules-based simulated evaluation for traders who want to prove consistency before they scale.</p>
+
+          <div class="value-grid" aria-label="Evaluation details">
+            <div class="value-card"><b>Clear rules</b><span>Know the evaluation structure before you begin.</span></div>
+            <div class="value-card"><b>Simulated</b><span>Practice and evaluate in a simulated environment.</span></div>
+            <div class="value-card"><b>Reviewed</b><span>Payment submissions are reviewed by a person.</span></div>
+          </div>
+        </div>
+
+        <footer class="flyer-bottom">
+          <a class="cta" id="cta-preview" href="https://blacktrading.com/" target="_blank" rel="noopener noreferrer">
+            <span id="cta-label">Visit now</span><span class="cta-arrow" aria-hidden="true">→</span>
+          </a>
+          <div class="footer-line">
+            <p class="footer-note">Simulated evaluation access only. No live capital, guaranteed returns, or promise of funding. Review eligibility, terms, and payment instructions before purchase.</p>
+            <span class="footer-kicker">Built for deliberate traders</span>
+          </div>
+        </footer>
+      </article>
+      <p class="instructions"><strong>Before sending:</strong> paste a campaign-specific UTM link above, check the button destination, then export. Use “Print / save as PDF” for a linked PDF or open the Word-ready HTML and save it as DOCX.</p>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const headlineInput = document.getElementById("headline-input");
+      const descriptionInput = document.getElementById("description-input");
+      const ctaInput = document.getElementById("cta-input");
+      const urlInput = document.getElementById("url-input");
+      const headlinePreview = document.getElementById("headline-preview");
+      const descriptionPreview = document.getElementById("description-preview");
+      const ctaPreview = document.getElementById("cta-preview");
+      const ctaLabel = document.getElementById("cta-label");
+      const status = document.getElementById("status");
+
+      function safeDestination(value) {
+        try {
+          const parsed = new URL(value.trim());
+          return parsed.protocol === "https:" || parsed.protocol === "http:" ? parsed.href : null;
+        } catch {
+          return null;
+        }
+      }
+
+      function syncPreview() {
+        const lines = (headlineInput.value.trim() || "Trade with\nintention.").split(/\r?\n/);
+        headlinePreview.replaceChildren();
+        lines.forEach((line, index) => {
+          if (index > 0) {
+            headlinePreview.append(document.createElement("br"));
+            const emphasis = document.createElement("em");
+            emphasis.textContent = line;
+            headlinePreview.append(emphasis);
+          } else {
+            headlinePreview.append(document.createTextNode(line));
+          }
+        });
+        descriptionPreview.textContent = descriptionInput.value.trim();
+        ctaLabel.textContent = ctaInput.value;
+        const destination = safeDestination(urlInput.value);
+        ctaPreview.href = destination || "#";
+        ctaPreview.setAttribute("aria-disabled", destination ? "false" : "true");
+        ctaPreview.style.opacity = destination ? "1" : ".55";
+        status.textContent = destination ? "" : "Enter a valid http or https campaign link before exporting.";
+        return destination;
+      }
+      ctaPreview.addEventListener("click", (event) => {
+        if (!safeDestination(urlInput.value)) event.preventDefault();
+      });
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, (char) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;",
+        })[char]);
+      }
+
+      function exportedDocument() {
+        const destination = syncPreview();
+        if (!destination) return null;
+        const headline = (headlineInput.value.trim() || "Trade with\nintention.")
+          .split(/\r?\n/)
+          .map((line, index) => index === 0 ? escapeHtml(line) : `<em>${escapeHtml(line)}</em>`)
+          .join("<br>");
+        const description = escapeHtml(descriptionInput.value.trim());
+        const label = escapeHtml(ctaInput.value);
+        const safeUrl = escapeHtml(destination);
+        return `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="${description}">
+<title>Nova Trading — Campaign</title>
+<style>
+  body{margin:0;padding:28px;background:#f3f6f2;color:#17211c;font-family:Arial,Helvetica,sans-serif}
+  .flyer{max-width:760px;min-height:760px;margin:0 auto;padding:58px;background:#fff;border:1px solid #dce4dd}
+  .brand{color:#17211c;font-size:14px;font-weight:800;letter-spacing:.16em;text-decoration:none}
+  .brand small{display:block;margin-top:4px;color:#718078;font-size:9px;letter-spacing:.23em}
+  .rule{height:1px;margin:22px 0 48px;background:#dce4dd}
+  .chip{display:inline-block;padding:8px 11px;border:1px solid #d7e4d9;border-radius:20px;background:#edf5ee;color:#174d36;font-size:10px;font-weight:bold;letter-spacing:.12em;text-transform:uppercase}
+  h1{max-width:620px;margin:24px 0;color:#17231b;font-family:Georgia,"Times New Roman",serif;font-size:68px;font-weight:500;letter-spacing:-.055em;line-height:1.02}
+  p{max-width:540px;color:#65736a;font-size:17px;line-height:1.75}
+  .points{display:flex;gap:12px;margin:40px 0}
+  .point{flex:1;padding:16px;border:1px solid #e0e8e1}
+  .point b{display:block;margin-bottom:8px;color:#263d2e;font-family:Georgia,"Times New Roman",serif;font-size:17px;font-weight:500}
+  .point span{color:#728078;font-size:12px;line-height:1.5}
+  .cta{display:inline-block;margin:4px 0 30px;padding:17px 25px;background:#287953;color:#fff;font-size:14px;font-weight:bold;text-decoration:none}
+  .foot{max-width:590px;margin-top:20px;padding-top:20px;border-top:1px solid #dce4dd;color:#829087;font-size:11px;line-height:1.6}
+  @media(max-width:640px){body{padding:12px}.flyer{min-height:0;padding:28px}h1{font-size:48px}.points{flex-direction:column}}
+  @media print{@page{size:A4 portrait;margin:11mm}body{padding:0;background:#fff}.flyer{max-width:none;min-height:267mm;padding:17mm;border:1px solid #dce4dd}.cta{color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<main class="flyer">
+  <div class="brand">NOVA<small>TRADING</small></div>
+  <div class="rule"></div>
+  <span class="chip">Simulated trading evaluation</span>
+  <h1>${headline}</h1>
+  <p>${description}</p>
+  <div class="points">
+    <div class="point"><b>Clear rules</b><span>Know the evaluation structure before you begin.</span></div>
+    <div class="point"><b>Simulated</b><span>Practice and evaluate in a simulated environment.</span></div>
+    <div class="point"><b>Reviewed</b><span>Payment submissions are reviewed by a person.</span></div>
+  </div>
+  <a class="cta" href="${safeUrl}" target="_blank" rel="noopener noreferrer">${label} &nbsp; →</a>
+  <p class="foot">Simulated evaluation access only. No live capital, guaranteed returns, or promise of funding. Review eligibility, terms, and payment instructions before purchase.</p>
+</main>
+</body>
+</html>`;
+      }
+
+      function downloadHtml(fileName) {
+        const html = exportedDocument();
+        if (!html) return;
+        const blob = new Blob([html], { type: "text/html;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        status.textContent = fileName.includes("word")
+          ? "Word-ready HTML downloaded. Open it in Word or LibreOffice and Save As DOCX."
+          : "Standalone campaign HTML downloaded.";
+      }
+
+      for (const input of [headlineInput, descriptionInput, ctaInput, urlInput]) {
+        input.addEventListener("input", syncPreview);
+        input.addEventListener("change", syncPreview);
+      }
+      document.getElementById("download-html").addEventListener("click", () => downloadHtml("nova-trading-campaign-ad.html"));
+      document.getElementById("download-word").addEventListener("click", () => downloadHtml("nova-trading-campaign-ad-word-ready.html"));
+      document.getElementById("print-pdf").addEventListener("click", () => {
+        if (!syncPreview()) return;
+        window.print();
+      });
+      syncPreview();
+    })();
+  </script>
+</body>
+</html>

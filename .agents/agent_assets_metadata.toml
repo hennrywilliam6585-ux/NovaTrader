@@ -1,0 +1,16 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "CkpsXxG-aBJzcxsUcNCmC"
+uri = "file://artifacts/black-trading/public/campaign-ad-template.html"
+type = "html"
+title = "Nova Trading campaign ad template"
+description = "A reusable, editable HTML advertisement with a Visit now or Purchase now CTA, tracked-link field, standalone HTML download, PDF print layout, and Word-ready HTML export."
+logical_id = "86f20e2c-930a-458d-8ec1-1797f50e7bda"
+content_hash = "sha256:5cdb58afde2dedb6ff53d7e8ae451cd0a29bad88a682f36492a843c17c3dd514"
+size = 23039
+mtime_ms = 1791291194496
+storage_uri = "gcs://replit-rams-assets-pike/rams/assets/repl:cd9cda6a-424d-4156-b187-4def2eab48f3/86f20e2c-930a-458d-8ec1-1797f50e7bda/fe0fb81b-515d-4b1d-b3be-c54a8f16e737"
+storage_version_token = "1791291247104129"
+content_type = "text/html"
